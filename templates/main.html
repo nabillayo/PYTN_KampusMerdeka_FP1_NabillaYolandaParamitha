@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- site css -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='../css/style.css') }}" media="all"/>
+    <title> Online Taxi Price </title>
+</head>
+
+<body>
+    <div class="form">
+        <h1> Online Taxi Price on Uber and Lyft </h1>
+
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class = "form-group">
+                <label for="distance"> Distance </label>
+                <input type="number" name="distance" class="form-control" id="distance" placeholder="Travel Distance" required="required">
+            </div>
+            <div class = "form-group">
+                <label for="surge_multiplier"> Surge Multiplier </label>
+                <input type="number" name="surge_multiplier" class="form-control" id="surge_multiplier" placeholder="Surge Multiplier" required="required">
+            </div>
+            <div class = "form-group">
+                <label for="service_type"> Service Type </label>
+                <select class="form-control" id="service_type" name="service_type" required="required">
+                    <option>-- Choose a Service Type --</option>
+                    <option value="0">Uber Black</option>
+                    <option value="1">Uber Black SUV</option>
+                    <option value="2">Lyft Lux</option>
+                    <option value="3">Lyft Lux Black</option>
+                    <option value="4">Lyft Lux Black XL</option>
+                    <option value="5">Lyft</option>
+                    <option value="6">Lyft XL</option>
+                    <option value="7">Lyft Shared</option>
+                    <option value="8">UberPool</option>
+                    <option value="9">UberX</option>
+                    <option value="10">UberXL</option>
+                    <option value="11">Uber WAV</option>
+                </select>
+            </div>
+            <div class="card text-center">
+                <div class="card-header bg-dark text-white font-weight-bold">
+                    The Prediction Result is
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ prediction_text }}</p>
+                </div>
+            </div>
+            <div class="col-lg-12 text-center mt-3 mb-5">
+                <button class="btn btn-primary btn-block btn-large">Predict</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
